@@ -13,7 +13,9 @@
         <label for="password" class="form-label">Password</label>
         <input v-model="form.password" type="password" id="password" class="form-control" required />
       </div>
-      <button type="submit" class="btn btn-primary">Continue</button>
+      <button type="submit" class="btn btn-primary" :disabled="loading">
+        {{ loading ? "Signing in..." : "Continue" }}
+      </button>
     </form>
     <div class="footer-link mt-3">
       <a href="#">Need help?</a>
@@ -27,7 +29,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import authApi from "@/api/auth.js";
 
 export default {
   name: "LoginPage",
@@ -37,7 +39,8 @@ export default {
         email: "",
         password: ""
       },
-      errorMessage: ""
+      errorMessage: "",
+      loading: false
     };
   },
   methods: {
@@ -47,19 +50,17 @@ export default {
         return;
       }
 
+      this.loading = true;
+      this.errorMessage = "";
+
       try {
-        const response = await axios.post("http://localhost:8080/api/user/login", {
-          email: this.form.email,
-          password: this.form.password
-        });
-
-        // 存储用户信息
-        localStorage.setItem("user", JSON.stringify(response.data));
-
-        // 登录成功后跳转到主页
+        const response = await authApi.login(this.form);
+        localStorage.setItem("user", JSON.stringify(response));
         this.$router.push("/home");
       } catch (error) {
-        this.errorMessage = error.response?.data?.message || "Login failed, please check your credentials.";
+        this.errorMessage = error.message || "Login failed, please check your credentials.";
+      } finally {
+        this.loading = false;
       }
     }
   }

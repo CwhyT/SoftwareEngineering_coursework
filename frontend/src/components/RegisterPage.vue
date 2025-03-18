@@ -21,7 +21,7 @@
         <input v-model="form.confirmPassword" type="password" class="form-control" required />
         <div v-if="passwordMismatch" class="alert alert-warning">Passwords do not match</div>
       </div>
-      
+
       <button type="submit" class="btn btn-primary" :disabled="passwordMismatch || loading">
         {{ loading ? "Creating Account..." : "Create Account" }}
       </button>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import authApi from "@/api/auth.js";
 
 export default {
   name: "RegisterPage",
@@ -64,32 +64,30 @@ export default {
         return;
       }
 
-      this.loading = true; // 显示加载状态
+      this.loading = true;
       this.errorMessage = "";
       this.successMessage = "";
 
       try {
-        const response = await axios.post("http://localhost:8080/api/user/register", {
+        const response = await authApi.register({
           username: this.form.username,
           email: this.form.email,
           password: this.form.password
         });
 
-        if (response.data.message === "User registered successfully") {
-          // 注册成功，存储用户信息
-          localStorage.setItem("user", JSON.stringify(response.data));
-
+        if (response.message === "User registered successfully") {
+          localStorage.setItem("user", JSON.stringify(response));
           this.successMessage = "Registration successful! Redirecting...";
           setTimeout(() => {
-            this.$router.push("/home"); // 直接跳转到主页
+            this.$router.push("/home");
           }, 1500);
         } else {
-          this.errorMessage = response.data.message || "Unexpected response from server";
+          this.errorMessage = response.message || "Unexpected response from server";
         }
       } catch (error) {
-        this.errorMessage = error.response?.data?.message || "Registration failed, please try again";
+        this.errorMessage = error.message || "Registration failed, please try again.";
       } finally {
-        this.loading = false; // 关闭加载状态
+        this.loading = false;
       }
     }
   }
