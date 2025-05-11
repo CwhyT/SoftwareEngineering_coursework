@@ -1,0 +1,52 @@
+/**
+ * 图标显示修复
+ * 解决Element Plus图标等组件图标不显示的问题
+ */
+
+/* Element Plus图标修复 */
+.el-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* SVG图标通用修复 */
+svg[viewBox] {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 地图图标与控件修复 */
+.map-control .el-icon,
+.map-control svg,
+.map-layers .el-icon,
+.map-layers svg {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 确保图标加载时有占位 */
+.el-icon:empty::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+/* 确保所有图标容器可见 */
+[class*="-icon"],
+[class*="icon-"],
+.icon,
+.icons {
+  visibility: visible !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+} 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0;url=/admin/vehicles">
+  <title>管理后台直接入口</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f2f5;
+      color: #333;
+    }
+    .container {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 8px;
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 90%;
+      width: 450px;
+    }
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 1rem auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #1890ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+    .button:hover {
+      background-color: #096dd9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>跳转到管理后台</h1>
+    <p>正在自动跳转，请稍候...</p>
+    <div class="loader"></div>
+    <p>如果页面未自动跳转，请点击下方按钮：</p>
+    <a href="/admin/vehicles" class="button">进入管理后台</a>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 在页面加载完成后立即跳转
+      setTimeout(function() {
+        window.location.href = '/admin/vehicles';
+      }, 500);
+    });
+  </script>
+</body>
+</html> 

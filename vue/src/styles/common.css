@@ -1,0 +1,55 @@
+/* 常用颜色 */
+:root {
+  --color-primary: #3b82f6;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #64748b;
+
+  --color-bg-base: #f5f7fa;
+  --color-bg-light: #ffffff;
+  
+  --color-text-primary: #1f2937;
+  --color-text-regular: #4b5563;
+  --color-text-secondary: #6b7280;
+  --color-text-placeholder: #9ca3af;
+}
+
+/* 自定义工具类 */
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+/* 页面通用样式 */
+.page-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* 响应式工具 */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+  
+  .page-container {
+    padding: 10px;
+  }
+}

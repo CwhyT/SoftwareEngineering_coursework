@@ -1,0 +1,16 @@
+
+.icon-wrapper[data-v-a5a8f92e] {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.security-item[data-v-a5a8f92e] {
+  transition: all 0.3s ease;
+}
+.security-item[data-v-a5a8f92e]:hover {
+  background-color: rgba(243, 244, 246, 0.5);
+  border-radius: 8px;
+}

@@ -1,0 +1,14 @@
+
+.amount-card {
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.payment-method-item:hover {
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.05);
+}
+.success-icon {
+  box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.1);
+}

@@ -1,0 +1,64 @@
+
+.scan-container[data-v-9643387c] {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+.scan-box[data-v-9643387c] {
+  margin-top: 30px;
+  width: 300px;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dcdfe6;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+.camera-view[data-v-9643387c] {
+  align-items: center;
+  width: 250px;
+  height: 250px;
+  border: 2px dashed #409eff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.camera-view[data-v-9643387c]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #409eff;
+  animation: scan-9643387c 2s linear infinite;
+}
+@keyframes scan-9643387c {
+0% { top: 0;
+}
+50% { top: 100%;
+}
+51% { top: 100%;
+}
+100% { top: 0;
+}
+}
+.scan-icon[data-v-9643387c] {
+  font-size: 64px;
+  color: #409eff;
+  margin-bottom: 16px;
+}
+.scan-btn[data-v-9643387c] {
+  margin-top: 24px;
+  width: 200px;
+}
