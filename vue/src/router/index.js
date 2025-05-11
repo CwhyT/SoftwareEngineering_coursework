@@ -75,6 +75,12 @@ const routes = [
         name: 'OrderHistory',
         component: () => import('../views/user/OrderHistory.vue'),
         meta: { title: '历史订单', requiresAuth: true }
+      },
+      {
+        path: 'cards',
+        name: 'Cards',
+        component: () => import('../views/user/Cards.vue'),
+        meta: { title: '我的卡包', requiresAuth: true }
       }
     ]
   },
@@ -231,6 +237,13 @@ router.beforeEach((to, from, next) => {
     })
     next({ name: 'login', query: { redirect: to.fullPath } })
     return
+  }
+  if(to.fullPath === '/admin' || to.fullPath === 'admin') {
+    if(localStorage.getItem('loginId') === '3') {
+      next();
+    } else {
+      next(from.path)
+    }
   }
 
   // 管理员权限检查 - 更严格地处理管理员路由
