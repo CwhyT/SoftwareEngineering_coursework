@@ -1,0 +1,15 @@
+
+.time-dot[data-v-480a0932]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px;
+  height: 3px;
+  background-color: white;
+  border-radius: 50%;
+}
+.timeline-item:last-child .time-line[data-v-480a0932] {
+  display: none;
+}

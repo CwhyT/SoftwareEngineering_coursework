@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跳转到管理控制台</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f2f5;
+      flex-direction: column;
+    }
+    .container {
+      max-width: 500px;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #1890ff;
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #1890ff;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 1rem auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .btn {
+      padding: 0.5rem 1rem;
+      background-color: #1890ff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 0.5rem;
+    }
+    .btn:hover {
+      background-color: #0c75e0;
+    }
+    .error {
+      color: #ff4d4f;
+      margin-top: 1rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>跳转到管理控制台</h1>
+    <p>正在验证管理员权限并准备跳转...</p>
+    <div class="loader"></div>
+    <div id="error" class="error">
+      您不是管理员，无法访问管理控制台。
+    </div>
+    <div id="buttons" style="display: none;">
+      <button class="btn" onclick="redirectToAdmin()">继续前往管理控制台</button>
+      <button class="btn" onclick="redirectToHome()" style="background-color: #ff4d4f;">返回用户首页</button>
+    </div>
+  </div>
+
+  <script>
+    // 检查用户是否为管理员
+    function checkAdmin() {
+      try {
+        const userData = localStorage.getItem('user');
+        if (!userData) {
+          showError();
+          return false;
+        }
+
+        const user = JSON.parse(userData);
+        if (user.role !== 'admin') {
+          showError();
+          return false;
+        }
+
+        return true;
+      } catch (e) {
+        showError();
+        return false;
+      }
+    }
+
+    // 显示错误消息
+    function showError() {
+      document.querySelector('.loader').style.display = 'none';
+      document.getElementById('error').style.display = 'block';
+      document.getElementById('buttons').style.display = 'block';
+      // document.querySelector('p').textContent = '权限验证失败';
+    }
+
+    // 重定向到管理员页面
+    function redirectToAdmin() {
+      window.location.href = '/admin';
+    }
+
+    // 重定向到用户首页
+    function redirectToHome() {
+      window.location.href = '/';
+    }
+
+    // 页面加载完成后执行验证
+    window.onload = function() {
+      setTimeout(() => {
+        if (checkAdmin()) {
+          redirectToAdmin();
+        }
+      }, 1000); // 延迟1秒再跳转，以便用户看到过渡界面
+    };
+  </script>
+</body>
+</html>

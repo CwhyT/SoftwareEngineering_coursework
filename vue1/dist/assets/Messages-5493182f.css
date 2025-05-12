@@ -1,0 +1,31 @@
+
+.message-item-container[data-v-d277e81e] {
+  position: relative;
+}
+.message-item-container.unread[data-v-d277e81e] {
+  background-color: rgba(239, 246, 255, 0.5); /* blue-50 with opacity */
+}
+.icon-wrapper[data-v-d277e81e] {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message-tabs[data-v-732eaf89] .el-tabs__nav {
+  border-radius: 8px;
+  overflow: hidden;
+}
+.message-tabs[data-v-732eaf89] .el-tabs__item {
+  padding: 0 20px;
+}
+.message-item[data-v-732eaf89] {
+  padding: 16px 0;
+}
+.empty-state[data-v-732eaf89] {
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+}
